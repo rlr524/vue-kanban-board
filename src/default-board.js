@@ -1,4 +1,4 @@
-import { uuid } from "./utils";
+import { uuid } from "./utils.js";
 
 export default {
   name: "workshop",
@@ -21,6 +21,12 @@ export default {
         {
           description: "Watch movies with Rila, probably Kurosawa.",
           name: "Watch movies with Rila",
+          id: uuid(),
+          userAssigned: null
+        },
+        {
+          description: "Go to Disneyland with Rila and Madison",
+          name: "Disneyland",
           id: uuid(),
           userAssigned: null
         }

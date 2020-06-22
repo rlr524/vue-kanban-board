@@ -1,9 +1,9 @@
 import Vue from "vue";
 import "./plugins/fontawesome";
 import App from "./App.vue";
-import router from "./router";
-import store from "./store";
-import AppButton from "./components/AppButton";
+import router from "@/router.js";
+import store from "@/store.js";
+import AppButton from "@/components/AppButton.vue";
 
 Vue.component("AppButton", AppButton);
 
