@@ -4,7 +4,7 @@ export default {
   name: "workshop",
   columns: [
     {
-      name: "todo",
+      name: "To Do",
       tasks: [
         {
           description: "Need to look at Rila. She's so easy to look at.",
@@ -33,7 +33,7 @@ export default {
       ]
     },
     {
-      name: "in-progress",
+      name: "In Progress",
       tasks: [
         {
           description: "",
@@ -50,7 +50,7 @@ export default {
       ]
     },
     {
-      name: "done",
+      name: "Done",
       tasks: [
         {
           description: "",
