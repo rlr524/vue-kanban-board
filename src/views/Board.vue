@@ -49,6 +49,15 @@
           />
         </div>
       </div>
+      <div class="column flex">
+        <input
+          type="text"
+          class="p-2 mr-2 flex-grow"
+          placeholder="New Column Name"
+          v-model="newColumnName"
+          @keyup.enter="createColumn"
+        />
+      </div>
     </div>
     <div class="task-bg" v-if="isTaskOpen" @click.self="close">
       <router-view />
@@ -62,11 +71,16 @@ import { mapState } from "vuex";
 export default {
   name: "Board",
   components: {},
+  data() {
+    return {
+      newColumnName: "",
+    };
+  },
   computed: {
     ...mapState(["board"]),
     isTaskOpen() {
       return this.$route.name === "task";
-    }
+    },
   },
   methods: {
     goToTask(task) {
@@ -78,9 +92,15 @@ export default {
     createTask(e, tasks) {
       this.$store.commit("CREATE_TASK", {
         tasks,
-        name: e.target.value
+        name: e.target.value,
       });
       e.target.value = "";
+    },
+    createColumn() {
+      this.$store.commit("CREATE_COLUMN", {
+        name: this.newColumnName,
+      });
+      this.newColumnName = "";
     },
     pickupTask(e, taskIndex, fromColumnIndex) {
       e.dataTransfer.effectAllowed = "move";
@@ -116,17 +136,17 @@ export default {
         fromTasks,
         toTasks,
         fromTaskIndex,
-        toTaskIndex
+        toTaskIndex,
       });
     },
     moveColumn(e, toColumnIndex) {
       const fromColumnIndex = e.dataTransfer.getData("from-column-index");
       this.$store.commit("MOVE_COLUMN", {
         fromColumnIndex,
-        toColumnIndex
+        toColumnIndex,
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

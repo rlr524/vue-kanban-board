@@ -11,7 +11,7 @@ const board = JSON.parse(localStorage.getItem("board")) || defaultBoard;
 export default new Vuex.Store({
   plugins: [saveStatePlugin],
   state: {
-    board
+    board,
   },
   getters: {
     getTask(state) {
@@ -24,7 +24,7 @@ export default new Vuex.Store({
           }
         }
       };
-    }
+    },
   },
   // mutations should be the only methods that modify state
   mutations: {
@@ -32,7 +32,13 @@ export default new Vuex.Store({
       tasks.push({
         name,
         id: uuid(),
-        description: ""
+        description: "",
+      });
+    },
+    CREATE_COLUMN(state, { name }) {
+      state.board.columns.push({
+        name,
+        tasks: [],
       });
     },
     UPDATE_TASK(state, { task, key, value }) {
@@ -46,6 +52,6 @@ export default new Vuex.Store({
       const columnList = state.board.columns;
       const columnToMove = columnList.splice(fromColumnIndex, 1)[0];
       columnList.splice(toColumnIndex, 0, columnToMove);
-    }
-  }
+    },
+  },
 });
